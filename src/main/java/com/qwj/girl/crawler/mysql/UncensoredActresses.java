@@ -1,7 +1,7 @@
-package com.qwj.girl.crawler;
+package com.qwj.girl.crawler.mysql;
 
-import com.qwj.girl.dao.BadGirlDao;
-import com.qwj.girl.entity.BadGirl;
+import com.qwj.girl.dao.mysql.BadGirlDao;
+import com.qwj.girl.entity.mysql.BadGirl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,6 +25,12 @@ public class UncensoredActresses implements PageProcessor {
 
     @Resource
     public BadGirlDao badGirlDao;
+
+    @Value("${spring.proxy.username}")
+    public String username;
+
+    @Value("${spring.proxy.password}")
+    public String password;
 
     @Value("#{'${spring.proxy.ipandports}'.split(',')}")
     public List<String> ipAndPorts = new ArrayList<>();
@@ -63,7 +69,7 @@ public class UncensoredActresses implements PageProcessor {
                 page.addTargetRequest(nextLink);
             }
         } else {
-            if (page.getStatusCode() == 404){
+            if (page.getStatusCode() == 404) {
                 return;
             }
             BadGirl badGirl = map.get(url);
@@ -120,7 +126,7 @@ public class UncensoredActresses implements PageProcessor {
         for (String ipAndPort : ipAndPorts) {
             String ip = ipAndPort.split(":")[0].trim();
             int port = Integer.valueOf(ipAndPort.split(":")[1].trim());
-            Proxy proxy = new Proxy(ip, port, "username", "password");
+            Proxy proxy = new Proxy(ip, port, username, password);
             proxy.setScheme("https");
             httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(proxy));
         }

@@ -1,12 +1,14 @@
-package com.qwj.girl.entity;
+package com.qwj.girl.entity.mysql;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "actresses")
-public class Girl {
+@Table(name = "uncensoredActresses")
+public class BadGirl {
 
     @Id
     @GeneratedValue(generator = "myid")

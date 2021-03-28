@@ -1,7 +1,7 @@
-package com.qwj.girl.crawler;
+package com.qwj.girl.crawler.mysql;
 
-import com.qwj.girl.dao.GirlDao;
-import com.qwj.girl.entity.Girl;
+import com.qwj.girl.dao.mysql.GirlDao;
+import com.qwj.girl.entity.mysql.Girl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,6 +25,12 @@ public class Actresses implements PageProcessor {
 
     @Resource
     public GirlDao girlDao;
+
+    @Value("${spring.proxy.username}")
+    public String username;
+
+    @Value("${spring.proxy.password}")
+    public String password;
 
     @Value("#{'${spring.proxy.ipandports}'.split(',')}")
     public List<String> ipAndPorts = new ArrayList<>();
@@ -63,7 +69,7 @@ public class Actresses implements PageProcessor {
                 page.addTargetRequest(nextLink);
             }
         } else {
-            if (page.getStatusCode() == 404){
+            if (page.getStatusCode() == 404) {
                 return;
             }
             Girl girl = map.get(url);
@@ -120,7 +126,7 @@ public class Actresses implements PageProcessor {
         for (String ipAndPort : ipAndPorts) {
             String ip = ipAndPort.split(":")[0].trim();
             int port = Integer.valueOf(ipAndPort.split(":")[1].trim());
-            Proxy proxy = new Proxy(ip, port, "username", "password");
+            Proxy proxy = new Proxy(ip, port, username, password);
             proxy.setScheme("https");
             httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(proxy));
         }

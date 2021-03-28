@@ -1,49 +1,47 @@
-package com.qwj.girl.entity;
+package com.qwj.girl.entity.mongo;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "uncensoredActresses")
-public class BadGirl {
+@Document(value = "actresses")
+public class Actor {
 
     @Id
-    @GeneratedValue(generator = "myid")
-    @GenericGenerator(name = "myid", strategy = "uuid")
     private String id;
     //唯一标识
-    @Column(name = "code", nullable = false)
+    @Field(value = "code")
     private String code;
     //艺名
-    @Column(name = "name", nullable = false)
+    @Field(value = "name")
     private String name;
     //生日
-    @Column(name = "birthday", nullable = true)
+    @Field(value = "birthday")
     private String birthday;
     //年龄
-    @Column(name = "age", nullable = true)
+    @Field(value = "age")
     private Integer age;
     //身高
-    @Column(name = "height", nullable = true)
+    @Field(value = "height")
     private String height;
     //罩杯
-    @Column(name = "cup", nullable = true)
+    @Field(value = "cup")
     private String cup;
     //胸围
-    @Column(name = "bust", nullable = true)
+    @Field(value = "bust")
     private String bust;
     //腰围
-    @Column(name = "waistline", nullable = true)
+    @Field(value = "waistline")
     private String waistline;
     //臀围
-    @Column(name = "hips", nullable = true)
+    @Field(value = "hips")
     private String hips;
     //爱好
-    @Column(name = "hobby", nullable = true)
+    @Field(value = "hobby")
     private String hobby;
     //入口
-    @Column(name = "detailLink", nullable = false)
+    @Field(value = "detailLink")
     private String detailLink;
 
     public String getDetailLink() {
