@@ -1,51 +1,51 @@
-package com.qwj.girl.entity.mongo;
+package com.qwj.girl.entity.redis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 
 
-@Document(value = "uncensoredActresses")
+@RedisHash(value = "actresses")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BadActor implements Serializable {
+public class Teacher implements Serializable {
 
     @Id
     private String id;
     //唯一标识
-    @Field(value = "code")
+    @Indexed
     private String code;
     //艺名
-    @Field(value = "name")
+    @Indexed
     private String name;
     //生日
-    @Field(value = "birthday")
+    @Indexed
     private String birthday;
     //年龄
-    @Field(value = "age")
+    @Indexed
     private Integer age;
     //身高
-    @Field(value = "height")
+    @Indexed
     private String height;
     //罩杯
-    @Field(value = "cup")
+    @Indexed
     private String cup;
     //胸围
-    @Field(value = "bust")
+    @Indexed
     private String bust;
     //腰围
-    @Field(value = "waistline")
+    @Indexed
     private String waistline;
     //臀围
-    @Field(value = "hips")
+    @Indexed
     private String hips;
     //爱好
-    @Field(value = "hobby")
+    @Indexed
     private String hobby;
     //入口
-    @Field(value = "detailLink")
+    @Indexed
     private String detailLink;
 
     public String getId() {

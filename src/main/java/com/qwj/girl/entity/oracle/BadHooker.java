@@ -1,51 +1,52 @@
-package com.qwj.girl.entity.mongo;
+package com.qwj.girl.entity.oracle;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-
-@Document(value = "uncensoredActresses")
+@Entity
+@Table(name = "uncensoredActresses")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BadActor implements Serializable {
+public class BadHooker implements Serializable {
 
     @Id
+    @GeneratedValue(generator = "myid")
+    @GenericGenerator(name = "myid", strategy = "uuid")
     private String id;
     //唯一标识
-    @Field(value = "code")
+    @Column(name = "code", nullable = false)
     private String code;
     //艺名
-    @Field(value = "name")
+    @Column(name = "name", nullable = false)
     private String name;
     //生日
-    @Field(value = "birthday")
+    @Column(name = "birthday", nullable = true)
     private String birthday;
     //年龄
-    @Field(value = "age")
+    @Column(name = "age", nullable = true)
     private Integer age;
     //身高
-    @Field(value = "height")
+    @Column(name = "height", nullable = true)
     private String height;
     //罩杯
-    @Field(value = "cup")
+    @Column(name = "cup", nullable = true)
     private String cup;
     //胸围
-    @Field(value = "bust")
+    @Column(name = "bust", nullable = true)
     private String bust;
     //腰围
-    @Field(value = "waistline")
+    @Column(name = "waistline", nullable = true)
     private String waistline;
     //臀围
-    @Field(value = "hips")
+    @Column(name = "hips", nullable = true)
     private String hips;
     //爱好
-    @Field(value = "hobby")
+    @Column(name = "hobby", nullable = true)
     private String hobby;
     //入口
-    @Field(value = "detailLink")
+    @Column(name = "detailLink", nullable = false)
     private String detailLink;
 
     public String getId() {

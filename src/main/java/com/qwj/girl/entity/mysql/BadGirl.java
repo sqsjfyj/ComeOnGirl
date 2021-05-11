@@ -1,14 +1,15 @@
 package com.qwj.girl.entity.mysql;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "uncensoredActresses")
-public class BadGirl {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class BadGirl implements Serializable {
 
     @Id
     @GeneratedValue(generator = "myid")
@@ -48,12 +49,12 @@ public class BadGirl {
     @Column(name = "detailLink", nullable = false)
     private String detailLink;
 
-    public String getDetailLink() {
-        return detailLink;
+    public String getId() {
+        return id;
     }
 
-    public void setDetailLink(String detailLink) {
-        this.detailLink = detailLink;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCode() {
@@ -62,14 +63,6 @@ public class BadGirl {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -88,11 +81,11 @@ public class BadGirl {
         this.birthday = birthday;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -142,5 +135,13 @@ public class BadGirl {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public String getDetailLink() {
+        return detailLink;
+    }
+
+    public void setDetailLink(String detailLink) {
+        this.detailLink = detailLink;
     }
 }

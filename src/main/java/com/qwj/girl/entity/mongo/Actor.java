@@ -1,12 +1,16 @@
 package com.qwj.girl.entity.mongo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
+
 
 @Document(value = "actresses")
-public class Actor {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Actor implements Serializable {
 
     @Id
     private String id;
@@ -44,12 +48,12 @@ public class Actor {
     @Field(value = "detailLink")
     private String detailLink;
 
-    public String getDetailLink() {
-        return detailLink;
+    public String getId() {
+        return id;
     }
 
-    public void setDetailLink(String detailLink) {
-        this.detailLink = detailLink;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCode() {
@@ -58,14 +62,6 @@ public class Actor {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -84,11 +80,11 @@ public class Actor {
         this.birthday = birthday;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -138,5 +134,13 @@ public class Actor {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public String getDetailLink() {
+        return detailLink;
+    }
+
+    public void setDetailLink(String detailLink) {
+        this.detailLink = detailLink;
     }
 }
